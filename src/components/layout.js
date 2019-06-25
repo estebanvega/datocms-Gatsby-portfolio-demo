@@ -3,10 +3,15 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import { StaticQuery, graphql } from "gatsby"
 import { HelmetDatoCms } from 'gatsby-source-datocms'
+import Menu from './menu'
 
 import '../styles/index.sass'
 
-const TemplateWrapper = ({ children }) => (
+const TemplateWrapper = ({ children }) => {
+  if (typeof document !== 'undefined') {
+    document.getElementsByTagName("body")[0].classList.add("onesidebar", "page", "page-id-747", "page-template-default");
+  }
+  return (
   <StaticQuery query={graphql`
   query LayoutQuery {
     layout: datoCmsLayout{
@@ -27,42 +32,7 @@ const TemplateWrapper = ({ children }) => (
 
           <div id="secondary" className="sidebar" role="complementary">
             <a href={data.layout.logoLink} className="site-logo-link" rel="home" itemProp="url"><img src={data.layout.logoImage.url} width={data.layout.logoImage.width} height={data.layout.logoImage.height} className="site-logo attachment-sapor-logo" alt data-size="sapor-logo" itemProp="logo" data-attachment-id={963} data-permalink="https://www.euroben.se/euroben_logo_rgb_png/" data-orig-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=260%2C57&ssl=1" data-orig-size="260,57" data-comments-opened={0} data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="euroben_logo_rgb_png" data-image-description data-medium-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=300%2C66&ssl=1" data-large-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=730%2C161&ssl=1" /></a>
-            <nav id="site-navigation" className="main-navigation" role="navigation">
-              <div className="menu-meny-1-container"><ul id="menu-meny-1" className="menu"><li id="menu-item-785" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-747 current_page_item menu-item-785"><a href="https://www.euroben.se/" aria-current="page">Start</a></li>
-                <li id="menu-item-786" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-786"><a href="https://www.euroben.se/vart-utbud/">Våra försäkringar<button className="showsub-toggle" aria-expanded="false" /></a>
-                  <ul className="sub-menu">
-                    <li id="menu-item-787" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-787"><a href="https://www.euroben.se/europlan-sverige/">EuroPlan – Sverige<button className="showsub-toggle" aria-expanded="false" /></a>
-                      <ul className="sub-menu">
-                        <li id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789"><a href="https://www.euroben.se/alderspension/">Ålderspension</a></li>
-                        <li id="menu-item-793" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-793"><a href="https://www.euroben.se/sjukforsakring/">Sjukförsäkring</a></li>
-                        <li id="menu-item-790" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-790"><a href="https://www.euroben.se/efterlevandepension/">Efterlevandepension</a></li>
-                        <li id="menu-item-792" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-792"><a href="https://www.euroben.se/premiebefrielse/">Premiebefrielse</a></li>
-                        <li id="menu-item-791" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-791"><a href="https://www.euroben.se/flyttratt/">Flytträtt</a></li>
-                      </ul>
-                    </li>
-                    <li id="menu-item-788" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-788"><a href="https://www.euroben.se/ppa-13/">Sjukpension enligt PPA 13</a></li>
-                    <li id="menu-item-784" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-784"><a href="https://www.euroben.se/ppa-07/">PPA 07</a></li>
-                    <li id="menu-item-783" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-783"><a href="https://www.euroben.se/k06-bil-g/">K06 Bil G</a></li>
-                    <li id="menu-item-782" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-782"><a href="https://www.euroben.se/k06-bil-g-ppak/">K06 Bil G PPAK</a></li>
-                  </ul>
-                </li>
-                <li id="menu-item-776" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-776"><a href="https://www.euroben.se/kapitalforvaltare/">Kapitalförvaltning<button className="showsub-toggle" aria-expanded="false" /></a>
-                  <ul className="sub-menu">
-                    <li id="menu-item-794" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-794"><a href="https://www.euroben.se/om-kapitalforvaltning/">Om kapitalförvaltning</a></li>
-                  </ul>
-                </li>
-                <li id="menu-item-781" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-781"><a href="https://www.euroben.se/ladda-ner-information/">Försäkringsvillkor och dokument</a></li>
-                <li id="menu-item-780" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-780"><a href="https://www.euroben.se/nyhetsarkiv/">Nyhetsarkiv</a></li>
-                <li id="menu-item-451" className="menu-item menu-item-type-custom menu-item-object-custom menu-item-451"><a href="http://euroben.ie">Euroben Irland – euroben.ie</a></li>
-                <li id="menu-item-795" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-795"><a href="https://www.euroben.se/kontakta-oss/">Kontakta oss<button className="showsub-toggle" aria-expanded="false" /></a>
-                  <ul className="sub-menu">
-                    <li id="menu-item-779" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-779"><a href="https://www.euroben.se/klagomal/">Klagomål</a></li>
-                    <li id="menu-item-778" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-778"><a href="https://www.euroben.se/provningsmojligheter-utanfor-euroben/">Prövningsmöjligheter utanför Euroben</a></li>
-                    <li id="menu-item-777" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-777"><a href="https://www.euroben.se/konsumentvagledning/">Konsumentvägledning</a></li>
-                  </ul>
-                </li>
-                <li id="menu-item-796" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-796"><a href="https://www.euroben.se/om/">Om Euroben</a></li>
-              </ul></div>			</nav>{/* #site-navigation */}
+            <Menu></Menu>
             <div className="widget-area">
               <aside id="recent-posts-2" className="widget widget_recent_entries">		<h2 className="widget-title">Senaste nytt</h2>		<ul>
                 <li>
@@ -93,7 +63,7 @@ const TemplateWrapper = ({ children }) => (
       </div>
     )}
   />
-)
+)}
 
 TemplateWrapper.propTypes = {
   children: PropTypes.object,

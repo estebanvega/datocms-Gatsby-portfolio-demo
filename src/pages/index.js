@@ -6,9 +6,7 @@ import Layout from "../components/layout"
 
 const IndexPage = ({ data }) => {
 
-  if (typeof document !== 'undefined') {
-    document.getElementsByTagName("body")[0].classList.add("onesidebar", "page", "page-id-747", "page-template-default");
-  }
+
 
   return (
     <Layout>

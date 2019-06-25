@@ -8,44 +8,17 @@ import '../styles/index.sass'
 
 const TemplateWrapper = ({ children }) => (
   <StaticQuery query={graphql`
-    query LayoutQuery
-    {
-      datoCmsSite {
-        globalSeo {
-          siteName
-        }
-        faviconMetaTags {
-          ...GatsbyDatoCmsFaviconMetaTags
-        }
-      }
-      datoCmsHome {
-        seoMetaTags {
-          ...GatsbyDatoCmsSeoMetaTags
-        }
-        introTextNode {
-          childMarkdownRemark {
-            html
-          }
-        }
-        copyright
-      }
-      allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
-        edges {
-          node {
-            profileType
-            url
-          }
-        }
-      }
+  query LayoutQuery {
+    layout: datoCmsLayout{
+      logoLink,
+      logoImage{url, width, height}
     }
+  }
   `}
     render={data => (
       <div id="page" className="site hfeed">
         <div className="site-content" id="content">
-          <HelmetDatoCms
-            favicon={data.datoCmsSite.faviconMetaTags}
-            seo={data.datoCmsHome.seoMetaTags}
-          >
+          <HelmetDatoCms>
             <link rel="stylesheet" id="wp-block-library-css" href="https://www.euroben.se/wp-includes/css/dist/block-library/style.min.css?ver=5.2.2" type="text/css" media="all"></link>
             <link rel="stylesheet" id="sapor-style-css" href="https://www.euroben.se/wp-content/themes/sapor/style.css?ver=5.2.2" type="text/css" media="all"></link>
           </HelmetDatoCms>
@@ -53,7 +26,7 @@ const TemplateWrapper = ({ children }) => (
           {children}
 
           <div id="secondary" className="sidebar" role="complementary">
-            <a href="https://www.euroben.se/" className="site-logo-link" rel="home" itemProp="url"><img width={260} height={57} src="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=260%2C57&ssl=1" className="site-logo attachment-sapor-logo" alt data-size="sapor-logo" itemProp="logo" data-attachment-id={963} data-permalink="https://www.euroben.se/euroben_logo_rgb_png/" data-orig-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=260%2C57&ssl=1" data-orig-size="260,57" data-comments-opened={0} data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="euroben_logo_rgb_png" data-image-description data-medium-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=300%2C66&ssl=1" data-large-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=730%2C161&ssl=1" /></a>
+            <a href={data.layout.logoLink} className="site-logo-link" rel="home" itemProp="url"><img src={data.layout.logoImage.url} width={data.layout.logoImage.width} height={data.layout.logoImage.height} className="site-logo attachment-sapor-logo" alt data-size="sapor-logo" itemProp="logo" data-attachment-id={963} data-permalink="https://www.euroben.se/euroben_logo_rgb_png/" data-orig-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=260%2C57&ssl=1" data-orig-size="260,57" data-comments-opened={0} data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="euroben_logo_rgb_png" data-image-description data-medium-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=300%2C66&ssl=1" data-large-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=730%2C161&ssl=1" /></a>
             <nav id="site-navigation" className="main-navigation" role="navigation">
               <div className="menu-meny-1-container"><ul id="menu-meny-1" className="menu"><li id="menu-item-785" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-747 current_page_item menu-item-785"><a href="https://www.euroben.se/" aria-current="page">Start</a></li>
                 <li id="menu-item-786" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-786"><a href="https://www.euroben.se/vart-utbud/">Våra försäkringar<button className="showsub-toggle" aria-expanded="false" /></a>

@@ -5,7 +5,10 @@ import Img from 'gatsby-image'
 import Layout from "../components/layout"
 
 const IndexPage = ({ data }) => {
-  document.getElementsByTagName("body")[0].classList.add("onesidebar", "page", "page-id-747", "page-template-default");
+
+  if (typeof document !== 'undefined') {
+    document.getElementsByTagName("body")[0].classList.add("onesidebar", "page", "page-id-747", "page-template-default");
+  }
 
   return (
     <Layout>

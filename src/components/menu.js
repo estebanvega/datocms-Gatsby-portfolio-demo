@@ -19,6 +19,12 @@ const Menu = ({ children }) => {
             position
             slug
             title
+            treeChildren {
+              id
+              position
+              slug
+              title
+            }
           }
           treeParent {
             id
@@ -49,7 +55,25 @@ const Menu = ({ children }) => {
                           <React.Fragment>
                             <ul className="sub-menu">
                               {node.treeChildren.map((nodeChild) =>
-                                (<li key={"child-" + nodeChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789"><a href={"/content/" + nodeChild.slug}>{nodeChild.title}</a></li>)
+                                (
+                                  <li key={"child-" + nodeChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
+                                    <a href={"/content/" + nodeChild.slug}>
+                                      {nodeChild.title}
+                                      {nodeChild.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
+                                    </a>
+                                    {nodeChild.treeChildren.length > 0 ?
+                                      <React.Fragment>
+                                        <ul className="sub-menu">
+                                          {nodeChild.treeChildren.map((nodeChildChild) =>
+                                            (
+                                              <li key={"child-" + nodeChildChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
+                                                <a href={"/content/" + nodeChildChild.slug}>{nodeChildChild.title}</a>
+                                              </li>)
+                                          )}
+                                        </ul>
+                                      </React.Fragment>
+                                      : null}
+                                  </li>)
                               )}
                             </ul>
                           </React.Fragment>

@@ -6,7 +6,7 @@ import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 const Menu = ({ children }) => {
   const isCurrentMenuItem = (slug) => {
-    return window.location.href.includes(slug) ? " current_page_item" : "";
+    return typeof window !== 'undefined' && window.location.href.includes(slug) ? " current_page_item" : "";
   };
 
   return (

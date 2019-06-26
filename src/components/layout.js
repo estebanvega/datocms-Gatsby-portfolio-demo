@@ -29,9 +29,9 @@ const TemplateWrapper = ({ children }) => {
             <link rel="stylesheet" id="sapor-style-css" href="https://www.euroben.se/wp-content/themes/sapor/style.css?ver=5.2.2" type="text/css" media="all"></link>
             <link rel="stylesheet" id="sapor-fonts-css" href="https://fonts.googleapis.com/css?family=PT+Sans%3A400%2C700%2C400italic%2C700italic%7CPT+Serif%3A400%2C700%2C400italic%2C700italic&amp;subset=latin%2Clatin-ext" type="text/css" media="all"></link>
             <link rel="stylesheet" id="genericons-css" href="https://www.euroben.se/wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css?ver=3.1" type="text/css" media="all"></link>
-            <script type="text/javascript" src="https://www.euroben.se/wp-includes/js/jquery/jquery.js"></script>
-            <script type="text/javascript" src="https://www.euroben.se/wp-includes/js/jquery/jquery-migrate.min.js?v=3"></script>
-            <script type="text/javascript" src="https://www.euroben.se/wp-content/themes/sapor/js/sapor.js?v=3"></script>
+            <script type="text/javascript" src="/js/jquery.js"></script>
+            <script type="text/javascript" src="/js/jquery-migrate.min.js"></script>
+            <script type="text/javascript" src="/js/sapor.js"></script>
           </HelmetDatoCms>
 
           {children}

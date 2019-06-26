@@ -9,15 +9,21 @@ const NewsWidget = ({ data }) => {
         <StaticQuery query={graphql`
         query NewsWidgetQuery {
             allDatoCmsContent(
-                filter: {isnewsitem: {eq: true}}
-              ) {
-                nodes {
-                  id
-                  title
-                  slug
-                  description
-              }
+            sort: {
+                fields: title
+                order: DESC
             }
+            limit: 4
+            filter: {isnewsitem: {eq: true}}
+          ) {
+            nodes {
+              id
+              title
+              slug
+              description
+          }
+        }
+
         }
         `}
       render={data => (

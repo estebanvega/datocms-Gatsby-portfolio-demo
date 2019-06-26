@@ -47,7 +47,7 @@ const Menu = ({ children }) => {
                   if (node.treeParent === null) {
                     return (
                       <li key={node.position} id="menu-item-785" className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + isCurrentMenuItem(node.slug)}>
-                        <a href={"/content/" + node.slug} aria-current="page">
+                        <a href={"/" + node.slug} aria-current="page">
                           {node.title}
                           {node.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
                         </a>
@@ -57,7 +57,7 @@ const Menu = ({ children }) => {
                               {node.treeChildren.map((nodeChild) =>
                                 (
                                   <li key={"child-" + nodeChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
-                                    <a href={"/content/" + nodeChild.slug}>
+                                    <a href={"/" + nodeChild.slug}>
                                       {nodeChild.title}
                                       {nodeChild.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
                                     </a>
@@ -66,8 +66,8 @@ const Menu = ({ children }) => {
                                         <ul className="sub-menu">
                                           {nodeChild.treeChildren.map((nodeChildChild) =>
                                             (
-                                              <li key={"child-" + nodeChildChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
-                                                <a href={"/content/" + nodeChildChild.slug}>{nodeChildChild.title}</a>
+                                              <li key={"child-child-" + nodeChildChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
+                                                <a href={"/" + nodeChildChild.slug}>{nodeChildChild.title}</a>
                                               </li>)
                                           )}
                                         </ul>

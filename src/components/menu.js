@@ -5,9 +5,13 @@ import { StaticQuery, graphql } from "gatsby"
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 const Menu = ({ children }) => {
-  const isCurrentMenuItem = (slug) => {
+  const getCurrentMenuItemClass = (slug) => {
     return typeof window !== 'undefined' && window.location.href.includes(slug) ? " current_page_item" : "";
   };
+  const getStartMenuItemClass = () => {
+    return typeof window !== 'undefined' && window.location.pathname === "/" ? " current_page_item" : "";
+  };
+
 
   return (
     <StaticQuery query={graphql`
@@ -41,12 +45,13 @@ const Menu = ({ children }) => {
         <nav id="site-navigation" className="main-navigation" role="navigation">
           <div className="menu-meny-1-container">
             <ul id="menu-meny-1" className="menu">
+              <li id="menu-item-785" className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + getStartMenuItemClass()}><a href="/" aria-current="page">Start</a></li>
               {data.allDatoCmsContent.nodes
                 .sort((a, b) => a.position - b.position)
                 .map((node) => {
                   if (node.treeParent === null) {
                     return (
-                      <li key={node.position} id="menu-item-785" className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + isCurrentMenuItem(node.slug)}>
+                      <li key={node.position} id="menu-item-785" className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + getCurrentMenuItemClass(node.slug)}>
                         <a href={"/" + node.slug} aria-current="page">
                           {node.title}
                           {node.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
@@ -84,7 +89,7 @@ const Menu = ({ children }) => {
                   }
                 })
               }
-              <li className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + isCurrentMenuItem("newsarchive")}>
+              <li className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + getCurrentMenuItemClass("newsarchive")}>
                 <a href="/newsarchive/">Nyhetsarkiv</a>
               </li>
             </ul>

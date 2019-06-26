@@ -6,6 +6,17 @@ const Menu = ({ children }) => {
     return typeof window !== 'undefined' && window.location.href.includes(slug) ? " current_page_item" : "";
   };
 
+  const handleMenuClick = (event) => {
+    event.preventDefault();
+
+    const element = event.target;
+    element.classList.toggle("sub-on");
+
+    const closestParentMenuItem = element.closest(".menu-item");
+    const closestSubMenuItem = closestParentMenuItem.querySelector(".sub-menu");
+    closestSubMenuItem.classList.toggle("sub-on");
+  };
+
   return (
     <StaticQuery query={graphql`
     {
@@ -46,7 +57,7 @@ const Menu = ({ children }) => {
                       <li key={node.position} id="menu-item-785" className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + isCurrentMenuItem(node.slug)}>
                         <a href={"/" + node.slug} aria-current="page">
                           {node.title}
-                          {node.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
+                          {node.treeChildren.length > 0 && <button onClick={handleMenuClick} className="showsub-toggle" aria-expanded="false"></button>}
                         </a>
                         {node.treeChildren.length > 0 ?
                           <React.Fragment>
@@ -56,7 +67,7 @@ const Menu = ({ children }) => {
                                   <li key={"child-" + nodeChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
                                     <a href={"/" + nodeChild.slug}>
                                       {nodeChild.title}
-                                      {nodeChild.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
+                                      {nodeChild.treeChildren.length > 0 && <button onClick={handleMenuClick} className="showsub-toggle" aria-expanded="false"></button>}
                                     </a>
                                     {nodeChild.treeChildren.length > 0 ?
                                       <React.Fragment>

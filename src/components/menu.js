@@ -12,7 +12,7 @@ const Menu = ({ children }) => {
   return (
     <StaticQuery query={graphql`
     {
-      allDatoCmsContent {
+      allDatoCmsContent(filter: {isnewsitem: {eq: false}}) {
         nodes {
           treeChildren {
             id
@@ -75,6 +75,7 @@ const Menu = ({ children }) => {
                                       : null}
                                   </li>)
                               )}
+                            
                             </ul>
                           </React.Fragment>
                           : null}
@@ -83,6 +84,9 @@ const Menu = ({ children }) => {
                   }
                 })
               }
+              <li className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + isCurrentMenuItem("newsarchive")}>
+                <a href="/newsarchive/">Nyhetsarkiv</a>
+              </li>
             </ul>
           </div>
         </nav>

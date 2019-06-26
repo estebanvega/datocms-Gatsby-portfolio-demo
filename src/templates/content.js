@@ -12,7 +12,7 @@ export default ({ data }) => (
               <h1 className="entry-title">{data.datoCmsContent.title}</h1>		</header>{/* .entry-header */}
             <div className="entry-meta">
             </div>{/* .entry-meta */}
-            {!!data.datoCmsContent.coverImage.url ?
+            {data.datoCmsContent.coverImage && !!data.datoCmsContent.coverImage.url ?
               <p className="lead_in">
                 <img width="171" height="109" sizes="(max-width: 171px) 100vw, 171px" src={data.datoCmsContent.coverImage.url} className="alignright" />
                 {data.datoCmsContent.descriptionNode.childMarkdownRemark.rawMarkdownBody}

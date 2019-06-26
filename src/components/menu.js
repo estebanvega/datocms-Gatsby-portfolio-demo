@@ -1,8 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
 import { StaticQuery, graphql } from "gatsby"
-import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 const Menu = ({ children }) => {
   const isCurrentMenuItem = (slug) => {
@@ -75,7 +72,7 @@ const Menu = ({ children }) => {
                                       : null}
                                   </li>)
                               )}
-                            
+
                             </ul>
                           </React.Fragment>
                           : null}

@@ -1,30 +1,27 @@
 import React from 'react'
-import Slider from 'react-slick'
-import { HelmetDatoCms } from 'gatsby-source-datocms'
-import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 
 export default ({ data }) => (
   <Layout>
     <div id="primary" className="content-area">
-  <main id="main" className="site-main" role="main">
-    <article id="post-772" className="post-772 page type-page status-publish hentry">
-      <div className="entry-wrapper">
-        <header className="entry-header">
-          <h1 className="entry-title">{data.datoCmsContent.title}</h1>		</header>{/* .entry-header */}
-        <div className="entry-meta">
-        </div>{/* .entry-meta */}
-        <div className="entry-content" dangerouslySetInnerHTML={{
-            __html: data.datoCmsContent.descriptionNode.childMarkdownRemark.html,
-          }}>
-        </div>{/* .entry-content */}
-        <footer className="entry-footer">
-        </footer>{/* .entry-footer */}
-      </div>
-    </article>{/* #post-## */}
-  </main>{/* #main */}
-</div>
+      <main id="main" className="site-main" role="main">
+        <article id="post-772" className="post-772 page type-page status-publish hentry">
+          <div className="entry-wrapper">
+            <header className="entry-header">
+              <h1 className="entry-title">{data.datoCmsContent.title}</h1>		</header>{/* .entry-header */}
+            <div className="entry-meta">
+            </div>{/* .entry-meta */}
+            <div className="entry-content" dangerouslySetInnerHTML={{
+              __html: data.datoCmsContent.descriptionNode.childMarkdownRemark.html,
+            }}>
+            </div>{/* .entry-content */}
+            <footer className="entry-footer">
+            </footer>{/* .entry-footer */}
+          </div>
+        </article>{/* #post-## */}
+      </main>{/* #main */}
+    </div>
 
     {/* <article className="sheet">
       <HelmetDatoCms seo={data.datoCmsContent.seoMetaTags} />

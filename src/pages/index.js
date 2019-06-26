@@ -1,13 +1,8 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Masonry from 'react-masonry-component'
-import Img from 'gatsby-image'
+import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 
 const IndexPage = ({ data }) => {
-
-
-
   return (
     <Layout>
       <div id="primary" className="content-area">

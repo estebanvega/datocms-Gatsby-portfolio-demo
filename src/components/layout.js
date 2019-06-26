@@ -6,6 +6,7 @@ import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Menu from './menu'
 
 import '../styles/index.sass'
+import NewsWidget from './newswidget';
 
 const TemplateWrapper = ({ children }) => {
   if (typeof document !== 'undefined') {
@@ -39,21 +40,8 @@ const TemplateWrapper = ({ children }) => {
             <a href={data.layout.logoLink} className="site-logo-link" rel="home" itemProp="url"><img src={data.layout.logoImage.url} width={data.layout.logoImage.width} height={data.layout.logoImage.height} className="site-logo attachment-sapor-logo" data-size="sapor-logo" itemProp="logo" data-attachment-id={963} data-permalink="https://www.euroben.se/euroben_logo_rgb_png/" data-orig-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=260%2C57&ssl=1" data-orig-size="260,57" data-comments-opened={0} data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="euroben_logo_rgb_png" data-image-description data-medium-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=300%2C66&ssl=1" data-large-file="https://i0.wp.com/www.euroben.se/wp-content/uploads/2017/04/euroben_logo_rgb_png-e1491480674577.png?fit=730%2C161&ssl=1" /></a>
             <Menu></Menu>
             <div className="widget-area">
-              <aside id="recent-posts-2" className="widget widget_recent_entries">		<h2 className="widget-title">Senaste nytt</h2>		<ul>
-                <li>
-                  <a href="https://www.euroben.se/2018/12/13/2018-12-13-reglerna-for-deklaration-av-direktpension-andras-2019/">2018-12-13 – Reglerna för deklaration av direktpension ändras 2019</a>
-                </li>
-                <li>
-                  <a href="https://www.euroben.se/2018/12/05/2018-12-05-vardesakring-av-pensioner-2019/">2018-12-05 – Värdesäkring av pensioner 2019</a>
-                </li>
-                <li>
-                  <a href="https://www.euroben.se/2018/05/24/2018-05-24-eurobens-integritetspolicy/">2018-05-24 – Eurobens Integritetspolicy</a>
-                </li>
-                <li>
-                  <a href="https://www.euroben.se/2017/12/14/2017-12-14-jamkningsbeslut-fran-skatteverket-for-ar-2018/">2017-12-14 – Jämkningsbeslut från Skatteverket för år 2018</a>
-                </li>
-              </ul>
-              </aside><aside id="search-2" className="widget widget_search"><form role="search" method="get" className="search-form" action="https://www.euroben.se/">
+              <NewsWidget></NewsWidget>
+              <aside id="search-2" className="widget widget_search"><form role="search" method="get" className="search-form" action="https://www.euroben.se/">
                 <label>
                   <span className="screen-reader-text">Search for:</span>
                   <input type="search" className="search-field" placeholder="Search …" defaultValue name="s" />

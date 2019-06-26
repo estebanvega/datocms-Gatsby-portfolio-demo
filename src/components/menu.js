@@ -16,14 +16,17 @@ const Menu = ({ children }) => {
         nodes {
           treeChildren {
             id
+            position
+            slug
+            title
           }
           treeParent {
             id
           }
-          title
           id
-          slug
           position
+          slug
+          title
         }
       }
     }
@@ -42,6 +45,15 @@ const Menu = ({ children }) => {
                           {node.title}
                           {node.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
                         </a>
+                        {node.treeChildren.length > 0 ?
+                          <React.Fragment>
+                            <ul className="sub-menu">
+                              {node.treeChildren.map((nodeChild) =>
+                                (<li key={"child-" + nodeChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789"><a href={"/content/" + nodeChild.slug}>{nodeChild.title}</a></li>)
+                              )}
+                            </ul>
+                          </React.Fragment>
+                          : null}
                       </li>
                     );
                   }

@@ -1,12 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
 import { StaticQuery, graphql } from "gatsby"
-import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 const Menu = ({ children }) => {
-  const isCurrentMenuItem = (slug) => {
+  const getCurrentMenuItemClass = (slug) => {
     return typeof window !== 'undefined' && window.location.href.includes(slug) ? " current_page_item" : "";
+  };
+  const getStartMenuItemClass = () => {
+    return typeof window !== 'undefined' && window.location.pathname === "/" ? " current_page_item" : "";
+  };
+
+
+  const handleMenuClick = (event) => {
+    event.preventDefault();
+
+    const element = event.target;
+    element.classList.toggle("sub-on");
+
+    const closestParentMenuItem = element.closest(".menu-item");
+    const closestSubMenuItem = closestParentMenuItem.querySelector(".sub-menu");
+    closestSubMenuItem.classList.toggle("sub-on");
   };
 
   return (
@@ -41,15 +53,16 @@ const Menu = ({ children }) => {
         <nav id="site-navigation" className="main-navigation" role="navigation">
           <div className="menu-meny-1-container">
             <ul id="menu-meny-1" className="menu">
+              <li id="menu-item-785" className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + getStartMenuItemClass()}><a href="/" aria-current="page">Start</a></li>
               {data.allDatoCmsContent.nodes
                 .sort((a, b) => a.position - b.position)
                 .map((node) => {
                   if (node.treeParent === null) {
                     return (
-                      <li key={node.position} id="menu-item-785" className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + isCurrentMenuItem(node.slug)}>
-                        <a href={"/content/" + node.slug} aria-current="page">
+                      <li key={node.position} id="menu-item-785" className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + getCurrentMenuItemClass(node.slug)}>
+                        <a href={"/" + node.slug} aria-current="page">
                           {node.title}
-                          {node.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
+                          {node.treeChildren.length > 0 && <button onClick={handleMenuClick} className="showsub-toggle" aria-expanded="false"></button>}
                         </a>
                         {node.treeChildren.length > 0 ?
                           <React.Fragment>
@@ -57,17 +70,17 @@ const Menu = ({ children }) => {
                               {node.treeChildren.map((nodeChild) =>
                                 (
                                   <li key={"child-" + nodeChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
-                                    <a href={"/content/" + nodeChild.slug}>
+                                    <a href={"/" + nodeChild.slug}>
                                       {nodeChild.title}
-                                      {nodeChild.treeChildren.length > 0 && <button className="showsub-toggle" aria-expanded="false"></button>}
+                                      {nodeChild.treeChildren.length > 0 && <button onClick={handleMenuClick} className="showsub-toggle" aria-expanded="false"></button>}
                                     </a>
                                     {nodeChild.treeChildren.length > 0 ?
                                       <React.Fragment>
                                         <ul className="sub-menu">
                                           {nodeChild.treeChildren.map((nodeChildChild) =>
                                             (
-                                              <li key={"child-" + nodeChildChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
-                                                <a href={"/content/" + nodeChildChild.slug}>{nodeChildChild.title}</a>
+                                              <li key={"child-child-" + nodeChildChild.position} id="menu-item-789" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-789">
+                                                <a href={"/" + nodeChildChild.slug}>{nodeChildChild.title}</a>
                                               </li>)
                                           )}
                                         </ul>
@@ -75,7 +88,7 @@ const Menu = ({ children }) => {
                                       : null}
                                   </li>)
                               )}
-                            
+
                             </ul>
                           </React.Fragment>
                           : null}
@@ -84,7 +97,7 @@ const Menu = ({ children }) => {
                   }
                 })
               }
-              <li className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + isCurrentMenuItem("newsarchive")}>
+              <li className={"menu-item menu-item-type-post_type menu-item-object-page menu-item-home page_item page-item-747 menu-item-785" + getCurrentMenuItemClass("newsarchive")}>
                 <a href="/newsarchive/">Nyhetsarkiv</a>
               </li>
             </ul>
